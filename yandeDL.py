@@ -20,7 +20,7 @@ def MultiPageDownload():  # MultiPageDownload 函数负责一次下载多个页�
     current_page_number = 1  # 默认当前页数为1
     full_url = crawler.ask_tag()  # 询问tag
     current_page_html, current_page_url = crawler.determineTag(full_url)  # 判断tag是否存在
-        coreDL(current_page_html)
+    coreDL(current_page_html)
     while current_page_number < total_number_of_page:  # 多页面下载循环
         (next_page_url, next_page_number) = crawler.next_page(current_page_url, current_page_number)
         current_page_number = current_page_number + 1
