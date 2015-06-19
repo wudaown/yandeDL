@@ -4,9 +4,9 @@ yande.re 图站爬虫一枚
 
 主要通过搜索tag完成下载
 
-'''python
+```python
 python3 yandeDL.py
-'''
+```
 
 ## 特色
 
