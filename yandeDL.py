@@ -1,5 +1,6 @@
 __author__ = 'wudaown'
 # -*- coding: utf-8 -*-
+#!/usr/local/bin/python3
 
 import crawler
 import urllib
@@ -8,8 +9,9 @@ import re
 
 
 def coreDL(html_url):  # coreDL 函数把crawler.py里的函数封装了一遍 把所有下载有关的函数封装了
-    page = crawler.extract_link(html_url)
-    dLink = crawler.download_link(page)
+    # page = crawler.extract_link(html_url)
+    # dLink = crawler.download_link(page)
+    dLink = crawler.getimgLink(html_url)
     filename_list = crawler.correct_filename(dLink)
     crawler.getImg(dLink, filename_list)
     print('下载完成 ！ ')

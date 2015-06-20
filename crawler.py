@@ -92,27 +92,35 @@ def extract_link(link):  # extract_link 函数提取每张图片单独的页面
         page.append(x)
     return page
 
-
-def imgLink(postlink):  # imgLink 函数通过正则表达式提取每张图片的直连 direct link
-    templink = []
-    plink = re.compile('src="https://files.yande.re\/.*.jpg')
-    for x in plink.findall(postlink):
-        templink.append(x[5:])
-    return templink
-
-
-def download_link(page):  # download_link 函数基本上封装了一下 相当于一个循环提取多个图片地址
+def getimgLink(url_html):
     dLink = []
-    for x in page:
-        dLink.append(str(imgLink(getSource(x))))
+    direct_link = re.compile('directlink \w{5}img"(.+?.jpg)')
+    for x in direct_link.findall(url_html):
+        dLink.append(x[7:])
     return dLink
+
+
+# def imgLink(postlink):  # imgLink 函数通过正则表达式提取每张图片的直连 direct link
+#     templink = []
+#     plink = re.compile('src="https://files.yande.re\/.*.jpg')
+#     for x in plink.findall(postlink):
+#         templink.append(x[5:])
+#     return templink
+
+
+# def download_link(page):  # download_link 函数基本上封装了一下 相当于一个循环提取多个图片地址
+#     dLink = []
+#     for x in page:
+#         dLink.append(str(imgLink(getSource(x))))
+#     return dLink
 
 
 def correct_filename(dLink):  # correct_filename 函数 读取图片直连 经过修改保留图片名字
     filename_list = []
     for x in dLink:  # 这里说一下 一开始通过正则表达式结果有部分图片直连不标准
         temp = urllib.request.unquote(x)  # 导致后面index out of range
-        filename_list.append(temp[74:-2])  # 最后还是通过unquote
+        filename_list.append(temp[70:])  # 最后还是通过unquote
+        # filename_list.append(temp[74:-2])  # 最后还是通过unquote
     return filename_list
 
 
@@ -120,7 +128,8 @@ def getImg(dLink, filename_list):  # getImg 函数负责下载图片并且判断
     count = 0
     for x in dLink:
         if os.path.exists(filename_list[count]) == False:
-            urllib.request.urlretrieve(x[2:-2], filename_list[count])
+            urllib.request.urlretrieve(x, filename_list[count])
+            # urllib.request.urlretrieve(x[2:-2], filename_list[count])
             print('下载第', count + 1, '张图片')
             print('下载中------------')
             print('下载中----------------')
