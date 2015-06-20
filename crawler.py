@@ -85,12 +85,12 @@ def possibleTag(link):  # possibleTag分析网页源码判断搜索tag是否存�
     return listTag
 
 
-def extract_link(link):  # extract_link 函数提取每张图片单独的页面
-    page = []
-    elink = re.compile('https://yande.re/post/show/\d{6}')
-    for x in elink.findall(link):
-        page.append(x)
-    return page
+# def extract_link(link):  # extract_link 函数提取每张图片单独的页面
+#     page = []
+#     elink = re.compile('https://yande.re/post/show/\d{6}')
+#     for x in elink.findall(link):
+#         page.append(x)
+#     return page
 
 def getimgLink(url_html):
     dLink = []
