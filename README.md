@@ -6,7 +6,7 @@ yande.re 图站爬虫一枚
 
 同类爬虫 konachan 图站爬虫 
 
-konachanDL  https://github.com/wudaown/yandeDL
+konachanDL  https://github.com/wudaown/konachanDL
 
 ## 使用说明
 
